@@ -1,7 +1,7 @@
 # Write your MySQL query statement below
 SELECT  b.Id AS "Id" from Weather a
-Left join weather b ON 
-DATEDIFF(b.recordDate, a.recordDate) = 1
+Left join weather b 
+ON DATEDIFF(b.recordDate, a.recordDate) = 1
 WHERE a.temperature < b.temperature;
 
 /* Write your T-SQL query statement below */
