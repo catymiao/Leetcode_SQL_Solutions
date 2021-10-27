@@ -1,4 +1,5 @@
 # Write your MySQL query statement below
+/* Write your T-SQL query statement below */
 
 select distinct t1.*
 from stadium t1, stadium t2, stadium t3
