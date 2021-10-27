@@ -1,4 +1,6 @@
-/* Write your MySQL/T-SQL query statement below */
+/* Write your T-SQL query statement below */
+/* MySQL did not accept */
+
 
 SELECT class 
 FROM courses 
