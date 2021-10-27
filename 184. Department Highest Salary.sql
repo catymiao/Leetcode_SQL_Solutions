@@ -21,4 +21,4 @@ SELECT e.name as employee, salary, d.name as department
 FROM Employee e
 LEFT JOIN Department d
 on e.departmentId = d.id )a)b 
-where rank = 1 
+WHERE rank = 1 
