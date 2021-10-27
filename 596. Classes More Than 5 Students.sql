@@ -1,5 +1,4 @@
-/* Write your T-SQL query statement below */
-/* MS SQL Server only */
+/* Write your MySQL/T-SQL query statement below */
 
 SELECT class 
 FROM courses 
