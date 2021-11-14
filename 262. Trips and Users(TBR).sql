@@ -1,3 +1,4 @@
+ /* MySQL */   
 SELECT Request_at Day, ROUND(Cancel_times/Total,2) AS "Cancellation Rate" 
 FROM (
 
@@ -23,5 +24,21 @@ FROM (
 )b
   GROUP BY Request_at) c 
     
-    
-    
+ /* T-SQL */    
+select b.Day, cast(isnull(1.0*Canceled/Total,0) as numeric(36,2)) as "Cancellation Rate" from (
+  SELECT request_at Day, count(*) Canceled
+  FROM Trips, USERS 
+  where client_id = users_id 
+  and banned='No'
+  and status <> 'completed'
+  and driver_id not in (select users_id from users where banned = 'Yes')
+  group by request_at) a 
+right join (
+  SELECT request_at Day, count(*) Total
+  FROM Trips, USERS 
+  where client_id = users_id 
+  and banned='No'
+  and driver_id not in (select users_id from users where banned = 'Yes')
+  group by request_at )b
+on a.Day = b.Day 
+where b.Day between '2013-10-01' and '2013-10-03'
