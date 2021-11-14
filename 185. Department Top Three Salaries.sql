@@ -12,8 +12,7 @@ SELECT Employee.Name AS Employee, Salary, DepartmentId, Dense_Rank() OVER
  
  /* Write your T-SQL query statement below */
 Select Department, Employee, Salary from (
-Select d.Name AS Department, e.name AS Employee, e.Salary, 
-dense_rank() over (partition by d.Name order by Salary desc) as rank            
+Select d.Name AS Department, e.name AS Employee, e.Salary, dense_rank() over (partition by d.Name order by Salary desc) as rank            
 FROM Department d, Employee e
 WHERE e.DepartmentId = d.Id)a 
 WHERE rank between 1 and 3 ;
