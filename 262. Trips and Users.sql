@@ -37,6 +37,6 @@ right join (
   FROM Trips, USERS 
   where client_id not in (select users_id from users where banned = 'Yes')
   and driver_id not in (select users_id from users where banned = 'Yes')
-  group by request_at)b
+  group by request_at) b
 on a.Day = b.Day 
 where b.Day between '2013-10-01' and '2013-10-03'
