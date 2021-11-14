@@ -28,16 +28,14 @@ FROM (
 select b.Day, cast(isnull(1.0*Canceled/Total,0) as numeric(36,2)) as "Cancellation Rate" from (
   SELECT request_at Day, count(*) Canceled
   FROM Trips, USERS 
-  where client_id = users_id 
-  and banned='No'
-  and status <> 'completed'
+  where client_id not in (select users_id from users where banned = 'Yes')
   and driver_id not in (select users_id from users where banned = 'Yes')
+  and status <> 'completed'
   group by request_at) a 
 right join (
   SELECT request_at Day, count(*) Total
   FROM Trips, USERS 
-  where client_id = users_id 
-  and banned='No'
+  where client_id not in (select users_id from users where banned = 'Yes')
   and driver_id not in (select users_id from users where banned = 'Yes')
   group by request_at )b
 on a.Day = b.Day 
